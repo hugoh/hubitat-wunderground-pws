@@ -157,11 +157,10 @@ void pruneOldObservations() {
     }
 }
 
-void computeAverages() {
-    List observationList = getAllObservations()
+void computeAverages(observationList) {
     float temperatureTotal = 0
     count = 0
-    for(String stateVar: getAllObservations()) {
+    for (String stateVar: observationList) {
         temperatureTotal += state[stateVar].imperial.temp
         count++
     }
@@ -181,24 +180,29 @@ Map getPwsObservation(String station, String apiKey) {
                 return respJson.observations[0]
             } catch (groovy.json.JsonException ex) {
                 log.error("Could not get data from API: ${ex.getMessage()}")
-                return null
             }
         } else {
             log.error("Could not get data from API: ${body}")
-            return null
         }
     }
+    return null
 }
 
 void recordObservation() {
     Map observation = getPwsObservation(settings.weatherStation, settings.apiKey)
     if (observation == null) {
         log.error('Failed to record observation')
-        return
+    } else {
+        addObservation(observation)
     }
-    addObservation(observation)
     pruneOldObservations()
-    computeAverages()
+    observationList = getAllObservations()
+    if (observationList.size() == 0) {
+        log.critical('No observation found -- that is a problem')
+        clearAttributes()
+    } else {
+        computeAverages(observationList)
+    }
 }
 
 void getWeatherObservationsLoop() {
