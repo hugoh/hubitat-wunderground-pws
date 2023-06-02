@@ -1,6 +1,6 @@
 {
   "packageName": "hubitat-wunderground-pws",
-  "version": "0.0",
+  "version": "0.0.0",
   "documentationLink": "https://github.com/hugoh/hubitat-wunderground-pws/blob/master/README.md",
   "author": "Hugo Haas",
   "category": "Utility",
