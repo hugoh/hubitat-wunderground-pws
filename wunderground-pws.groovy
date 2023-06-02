@@ -129,8 +129,8 @@ void addObservation(Map observation) {
 }
 
 List getAllObservations() {
-    def observationList = []
-    for(String stateVar: state.keySet()) {
+    observationList = []
+    for (String stateVar: state.keySet()) {
         if (!stateVar.startsWith("${OBS_PREFIX}${OBS_DELIMITER}")) {
             continue
         }
@@ -144,7 +144,7 @@ void pruneOldObservations() {
     Long now = now() / 1000
     logDebug("Purging old data; epoch is now ${now}")
     Long delta = settings.hourSpan * 60 * 60
-    for(String stateVar: getAllObservations()) {
+    for (String stateVar: getAllObservations()) {
         String timestamp = stateVar.substring(OBS_PREFIX_LEN)
         Long recordTimestamp = Long.parseLong(timestamp)
         Long secondsAgo = now - recordTimestamp
