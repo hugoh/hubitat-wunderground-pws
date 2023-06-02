@@ -172,12 +172,13 @@ void computeAverages(observationList) {
 Map getPwsObservation(String station, String apiKey) {
     final String wuApiUrl = 'https://api.weather.com/v2/pws/observations/current?format=json&units=e'
     String url = "${wuApiUrl}&stationId=${station}&apiKey=${apiKey}"
+    Map ret = null
     logDebug("Getting weather data from ${url}")
     httpGet(url) { resp ->
         if (resp?.isSuccess()) {
             try {
                 Map respJson = resp.getData()
-                return respJson.observations[0]
+                ret = respJson.observations[0]
             } catch (groovy.json.JsonException ex) {
                 log.error("Could not get data from API: ${ex.getMessage()}")
             }
@@ -185,7 +186,7 @@ Map getPwsObservation(String station, String apiKey) {
             log.error("Could not get data from API: ${body}")
         }
     }
-    return null
+    return ret
 }
 
 void recordObservation() {
