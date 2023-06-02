@@ -36,7 +36,7 @@ metadata {
         attribute TEMPERATURE, NUMBER
         attribute averageAtt(TEMPERATURE), NUMBER
 
-        command "clearState", [[name:"Clears all state"]]
+        command 'clearState', [[name:'Clears all state']]
     }
 }
 
@@ -73,11 +73,16 @@ void updated() {
     initialize()
 }
 
-void clearState() {
-    state.clear()
+void clearAttributes() {
+    log.info('Clearing all attribute values')
     for (String attribute: [HUMIDITY, PRECIPITATION, TEMPERATURE, averageAtt(TEMPERATURE)]) {
         device.deleteCurrentState(attribute)
     }
+}
+
+void clearState() {
+    state.clear()
+    clearAttributes()
 }
 
 Boolean checkStateVersion() {
