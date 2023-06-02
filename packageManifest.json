@@ -1,0 +1,19 @@
+{
+  "packageName": "hubitat-wunderground-pws",
+  "version": "0.0",
+  "documentationLink": "https://github.com/hugoh/hubitat-wunderground-pws/blob/master/README.md",
+  "author": "Hugo Haas",
+  "category": "Utility",
+  "tags": "Weather",
+  "drivers": [
+     {
+      "id": "94855140-2E5B-45D5-97B3-D94E40826097",
+      "name": "wunderground-pws",
+      "namespace": "hugoh",
+      "location": "https://raw.githubusercontent.com/hugoh/hubitat-wunderground-pws/master/wunderground-pws.groovy",
+      "required": true,
+      "oauth": false,
+      "description": "Device driver for Weather Underground personal weather stations"
+     }
+  ]
+}
