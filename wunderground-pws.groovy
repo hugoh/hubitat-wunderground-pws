@@ -17,7 +17,7 @@ import java.time.Instant
 @Field static final int DEFAULT_FREQUENCY = 60 * 60
 @Field static final int DEFAULT_RETENTION = 24
 
-public static final String version() { return '0.1.2' }
+public static final String version() { return '0.1.3' }
 
 String averageAtt(String attribute) {
     return "${attribute}Avg"
