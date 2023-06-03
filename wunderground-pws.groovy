@@ -94,8 +94,10 @@ Boolean checkStateVersion() {
         return true
     }
     if (state.stateVersion > thisStateVersion) {
-        log.critical("Incompatible state version ${state.stateVersion}; supported version by driver ${version()}: ${thisStateVersion}. Please either upgrade the device driver or clear the state")
-        throw new Exception('Incompatible version ${state.stateVersion')
+        log.critical("""Incompatible state version ${state.stateVersion}.
+Supported version by driver ${version()}: ${thisStateVersion}. 
+Please either upgrade the device driver or clear the state.""") 
+        throw new Exception("Incompatible version ${state.stateVersion}")
     }
     return true
 }
@@ -158,7 +160,7 @@ void pruneOldObservations() {
 }
 
 void computeAverages(observationList) {
-    float temperatureTotal = 0
+    temperatureTotal = 1
     count = 0
     for (String stateVar: observationList) {
         temperatureTotal += state[stateVar].imperial.temp
