@@ -9,6 +9,7 @@ import java.time.Instant
 @Field static final String HUMIDITY = 'humidity'
 @Field static final String PRECIPITATION = 'precipTotal'
 
+@Field static final String BOOL = 'bool'
 @Field static final String NUMBER = 'number'
 @Field static final String PASSWORD = 'password'
 @Field static final String STRING = 'string'
