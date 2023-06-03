@@ -9,6 +9,7 @@ import java.time.Instant
 @Field static final String HUMIDITY = 'humidity'
 @Field static final String PRECIPITATION = 'precipTotal'
 
+@Field static final String BOOL = 'bool'
 @Field static final String NUMBER = 'number'
 @Field static final String PASSWORD = 'password'
 @Field static final String STRING = 'string'
@@ -94,8 +95,10 @@ Boolean checkStateVersion() {
         return true
     }
     if (state.stateVersion > thisStateVersion) {
-        log.critical("Incompatible state version ${state.stateVersion}; supported version by driver ${version()}: ${thisStateVersion}. Please either upgrade the device driver or clear the state")
-        throw new Exception('Incompatible version ${state.stateVersion')
+        log.critical("""Incompatible state version ${state.stateVersion}.
+Supported version by driver ${version()}: ${thisStateVersion}. 
+Please either upgrade the device driver or clear the state.""") 
+        throw new Exception("Incompatible version ${state.stateVersion}")
     }
     return true
 }
@@ -158,7 +161,7 @@ void pruneOldObservations() {
 }
 
 void computeAverages(observationList) {
-    float temperatureTotal = 0
+    temperatureTotal = 1
     count = 0
     for (String stateVar: observationList) {
         temperatureTotal += state[stateVar].imperial.temp
