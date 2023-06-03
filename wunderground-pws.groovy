@@ -212,7 +212,7 @@ void recordObservation() {
 void getWeatherObservationsLoop() {
     recordObservation()
     logDebug("Scheduling next check in ${settings.pollFrequency} seconds")
-    runIn(settings.pollFrequency, 'recordObservation')
+    runIn(settings.pollFrequency, 'getWeatherObservationsLoop')
 }
 
 // --------------------------------------------------------------------------
