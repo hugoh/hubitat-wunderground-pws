@@ -139,7 +139,7 @@ List getAllObservations() {
         }
         observationList.add(stateVar)
     }
-    logDebug("Found observations: ${observationList}")
+    logTrace("Found observations: ${observationList}")
     return observationList
 }
 
@@ -155,7 +155,7 @@ void pruneOldObservations() {
             logDebug("Removing ${stateVar}: happened ${secondsAgo} seconds ago > ${delta}")
             state.remove(stateVar)
         } else {
-            logDebug("Keeping ${stateVar}")
+            logTrace("Keeping ${stateVar}")
         }
     }
 }
@@ -220,5 +220,11 @@ void getWeatherObservationsLoop() {
 void logDebug(String msg) {
     if (logEnable) {
         log.debug(msg)
+    }
+}
+
+void logTrace(String msg) {
+    if (logEnable) {
+        log.trace(msg)
     }
 }
