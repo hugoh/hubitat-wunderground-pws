@@ -9,3 +9,4 @@ In addition to retrieving the latest observation, it also computes the average t
 ## Related
 
 * [Enhanced Weather Underground Driver for Hubitat](https://github.com/dJOS1475/Hubitat_WU_Driver): see [differences](https://community.hubitat.com/t/release-weather-observations-from-personal-weather-station-via-weather-underground/119815/3?u=hugoh)
+* [Precipitation and Weather Monitor for National Weather Service Data](https://github.com/GaryMilne/Hubitat-Apps/)
