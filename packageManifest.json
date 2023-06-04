@@ -1,6 +1,6 @@
 {
   "packageName": "hubitat-wunderground-pws",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "documentationLink": "https://github.com/hugoh/hubitat-wunderground-pws/blob/master/README.md",
   "communityLink": "https://community.hubitat.com/t/release-weather-observations-from-personal-weather-station-via-weather-underground/119815",
   "author": "Hugo Haas",
