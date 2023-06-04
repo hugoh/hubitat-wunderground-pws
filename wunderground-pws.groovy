@@ -177,17 +177,21 @@ Map getPwsObservation(String station, String apiKey) {
     String url = "${wuApiUrl}&stationId=${station}&apiKey=${apiKey}"
     Map ret = null
     logDebug("Getting weather data from ${url}")
-    httpGet(url) { resp ->
-        if (resp?.isSuccess()) {
-            try {
-                Map respJson = resp.getData()
-                ret = respJson.observations[0]
-            } catch (groovy.json.JsonException ex) {
-                log.error("Could not get data from API: ${ex.getMessage()}")
+    try {
+        httpGet(url) { resp ->
+            if (resp?.isSuccess()) {
+                try {
+                    Map respJson = resp.getData()
+                    ret = respJson.observations[0]
+                } catch (groovy.json.JsonException ex) {
+                    log.error("Could not get data from API: ${ex.getMessage()}")
+                }
+            } else {
+                log.error("Could not get data from API: ${body}")
             }
-        } else {
-            log.error("Could not get data from API: ${body}")
         }
+    } catch (java.net.UnknownHostException ex) {
+        log.error("Could not reach API: ${ex.getMessage()}")
     }
     return ret
 }
